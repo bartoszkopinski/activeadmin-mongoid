@@ -64,10 +64,8 @@ module ActiveAdmin::Mongoid::Document
     end
 
     def group_by *args
-      scoped
+      criteria
     end
-
-
 
     # Cache
 
@@ -106,10 +104,10 @@ module ActiveAdmin::Mongoid::Document
       columns.index_by(&:name)
     end
 
-
-
-    def reorder *args
-      scoped
+    def reorder sorting
+      return scoped if sorting.blank?
+      collection, field, order = sorting.split(/ |\./)
+      unscoped.order_by(field => order)
     end
 
     def connection
