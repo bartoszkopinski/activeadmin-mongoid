@@ -106,7 +106,9 @@ module ActiveAdmin::Mongoid::Document
 
     def reorder sorting
       return scoped if sorting.blank?
-      collection, field, order = sorting.split(/ |\./)
+      options = sorting.split(/ |\./)
+      options.shift if options.count == 3
+      field, order = *options
       unscoped.order_by(field => order)
     end
 
