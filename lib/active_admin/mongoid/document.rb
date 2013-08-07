@@ -13,8 +13,6 @@ module ActiveAdmin::Mongoid::Document
   end
 
 
-
-
   # PROXY CLASSES
 
   class ColumnWrapper < SimpleDelegator
@@ -39,12 +37,11 @@ module ActiveAdmin::Mongoid::Document
     end
   end
 
-
-
-
   # CLASS METHODS
 
   included do
+    include MetaSearch::Searches::Mongoid
+
     unless respond_to? :primary_key
       class << self
         attr_accessor :primary_key
