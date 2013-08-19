@@ -1,4 +1,4 @@
-class ActiveAdmin::Filters::FormBuilder
+class ActiveAdmin::FilterFormBuilder
   def default_input_type(method, options = {})
     if column = column_for(method)
       case column.type.name.downcase.to_sym
