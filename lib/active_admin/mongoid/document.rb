@@ -4,14 +4,12 @@ require 'meta_search/searches/mongoid'
 module ActiveAdmin::Mongoid::Document
   extend ActiveSupport::Concern
 
-
   # INSTANCE METHODS
 
   # Returns the column object for the named attribute.
   def column_for_attribute(name)
     self.class.columns_hash[name.to_s]
   end
-
 
   # PROXY CLASSES
 
@@ -57,10 +55,10 @@ module ActiveAdmin::Mongoid::Document
     # Metasearch
 
     def joins_values *args
-      scoped
+      criteria
     end
 
-    def group_by *args
+    def group_by *args, &block
       criteria
     end
 
@@ -78,7 +76,6 @@ module ActiveAdmin::Mongoid::Document
     def cache
       @cache ||= {}
     end
-
 
     # Columns
 
@@ -102,7 +99,7 @@ module ActiveAdmin::Mongoid::Document
     end
 
     def reorder sorting
-      return scoped if sorting.blank?
+      return unscoped if sorting.blank?
       options = sorting.split(/ |\./)
       options.shift if options.count == 3
       field, order = *options
@@ -120,7 +117,6 @@ module ActiveAdmin::Mongoid::Document
     def quoted_table_name
       collection_name.to_s.inspect
     end
-
 
     def reflections *a
       relations *a
