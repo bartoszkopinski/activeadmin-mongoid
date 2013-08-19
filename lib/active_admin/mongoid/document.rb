@@ -4,13 +4,6 @@ require 'meta_search/searches/mongoid'
 module ActiveAdmin::Mongoid::Document
   extend ActiveSupport::Concern
 
-  # INSTANCE METHODS
-
-  # Returns the column object for the named attribute.
-  def column_for_attribute(name)
-    self.class.columns_hash[name.to_s]
-  end
-
   # PROXY CLASSES
 
   class ColumnWrapper < SimpleDelegator
