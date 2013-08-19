@@ -7,7 +7,7 @@ require 'mongoid'
 
 require 'active_admin/mongoid/comments'
 require 'active_admin/mongoid/adaptor'
-require 'active_admin/mongoid/filters/form_builder'
+require 'active_admin/mongoid/filter_form_builder'
 require 'active_admin/mongoid/resource'
 require 'active_admin/mongoid/document'
 require 'active_admin/mongoid/helpers/collection'
